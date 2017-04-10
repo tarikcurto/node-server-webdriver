@@ -1,16 +1,29 @@
 {
-  "name": "nodejs-server-webdriver",
+  "name": "node-webdriver",
+  "description": "Webdriver built in Node JS for server environments.",
   "version": "0.0.1",
+  "main": "index.js",
   "keywords": [
     "util",
     "webdriver",
     "server",
     "client"
   ],
+  "scripts": {
+    "start": "node index.js",
+    "build": "tsc",
+    "rebuild-run": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tarikcurto/node-webdriver.git"
+  },
   "author": "tarikcurto",
+  "license": "Apache-2.0",
   "contributors": [],
   "dependencies": {
-    "nodejs-terminal": "^1.0.0",
+    "gulp": "^3.9.1",
+    "tarikcurto.node-terminal": "^2.0.1",
     "typescript": "^2.2.2"
   }
 }
