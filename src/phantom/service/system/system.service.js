@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
+var system = require('system');
+var args = system.args;
+
+var pluginArgs = JSON.parse(args[1]);
+var plugins = (function(pluginList){
+
+    var pluginInstanceList = [];
+    for(var i = 0; i < pluginList.length; i++){
+        pluginInstanceList.push(require(pluginList[i]));
+    }
+
+    return pluginInstanceList;
+})(pluginArgs);
+
 var webPage = require('webpage');
 var page = webPage.create();
-
-
 
 phantom.exit();
