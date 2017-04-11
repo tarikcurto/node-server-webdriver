@@ -15,16 +15,17 @@
  */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const tarikcurto_node_terminal_1 = require("tarikcurto.node-terminal");
-const phantom_config_1 = require("../../config/phantom.config");
-class ApiService {
-    constructor() {
+var tarikcurto_node_terminal_1 = require("tarikcurto.node-terminal");
+var phantom_config_1 = require("../../config/phantom.config");
+var ApiService = (function () {
+    function ApiService() {
         this.terminalService = new tarikcurto_node_terminal_1.CommandService();
         this.terminalService.nameCommandService.nameCommandData = { value: "phantomjs " + phantom_config_1.PHANTOM_SCRIPT };
     }
-    run() {
+    ApiService.prototype.run = function () {
         console.log(this.terminalService.instanceExecution().executeSync());
-    }
-}
+    };
+    return ApiService;
+}());
 exports.ApiService = ApiService;
 //# sourceMappingURL=api.service.js.map

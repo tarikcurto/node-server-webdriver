@@ -13,39 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ArgumentSystemService = (function () {
-    
     function ArgumentSystemService(argumentList) {
-        
         this.argumentList = argumentList;
-        this.scriptFile = "";
         this.propertyList = {};
-        
-        this.defineScriptFile();
-        this.definePropertyList();
+        this.setScriptFile();
+        this.setPropertyList();
     }
-    
-    ArgumentSystemService.prototype.defineScriptFile = function () {
-        
+    ArgumentSystemService.prototype.setScriptFile = function () {
         this.scriptFile = this.argumentList[0];
     };
-    
-    ArgumentSystemService.prototype.definePropertyList = function () {
-        
+    ArgumentSystemService.prototype.setPropertyList = function () {
         for (var i = 1; i < this.argumentList.length; i++) {
-            this.defineProperty(this.argumentList[i]);
+            this.setProperty(i);
         }
     };
-    
-    ArgumentSystemService.prototype.defineProperty = function (argument) {
-        
-        var argumentData = /-?-([a-zA-Z0-9]{1,})=([\w\W]{1,})/.exec(argument);
+    ArgumentSystemService.prototype.setProperty = function (index) {
+        var argumentData = /-?-([a-zA-Z0-9]{1,})=([\w\W]{1,})/.exec(this.argumentList[index]);
         this.propertyList[argumentData[1]] = argumentData[2];
     };
-    
     return ArgumentSystemService;
-    
 }());
-
-module.exports.ArgumentSystemService = ArgumentSystemService;
+exports.ArgumentSystemService = ArgumentSystemService;
+//# sourceMappingURL=argument-system.service.js.map

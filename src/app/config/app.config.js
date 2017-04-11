@@ -15,7 +15,7 @@
  */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const os_1 = require("os");
+var os_1 = require("os");
 exports.APP_DIR = (function (dirname) {
     if (os_1.platform() == "win32") {
         return dirname.replace("\\src\\app\\config", "");

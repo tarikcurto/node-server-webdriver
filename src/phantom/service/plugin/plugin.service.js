@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 "use strict";
-class PluginService {
-}
+Object.defineProperty(exports, "__esModule", { value: true });
+var PluginService = (function () {
+    function PluginService() {
+    }
+    return PluginService;
+}());
 exports.PluginService = PluginService;
 //# sourceMappingURL=plugin.service.js.map

@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var app_config_1 = require("../../app/config/app.config");
-exports.PHANTOM_SCRIPT = app_config_1.SOURCE_DIR + "/phantom/service/system/system.service.js";
-//# sourceMappingURL=phantom.config.js.map
+
+export abstract class PluginService {
+
+    constructor() {
+
+    }
+}

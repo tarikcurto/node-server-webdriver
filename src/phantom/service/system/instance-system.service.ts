@@ -13,27 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var InstanceSystemService = (function () {
-    function InstanceSystemService() {
+
+export class InstanceSystemService {
+
+    public constructor() {
+
     }
-    InstanceSystemService.instanceListByProperty = function (moduleList) {
-        return InstanceSystemService.instanceList(JSON.parse(moduleList));
-    };
-    InstanceSystemService.instanceList = function (moduleList) {
+
+    public static instanceListByProperty(moduleList: string) {
+
+        return InstanceSystemService.instanceList(JSON.parse(moduleList))
+    }
+
+    public static instanceList(moduleList: Array<{ path: string, moduleName: string }>) {
+
         var instanceList = [];
+
         for (var i = 0; i < moduleList.length; i++) {
+
             var instance = InstanceSystemService.instance(moduleList[i]);
             instanceList.push(instance);
         }
+
         return instanceList;
-    };
-    InstanceSystemService.instance = function (moduleInfo) {
-        var instance = new (require(moduleInfo.path)[moduleInfo.moduleName])();
+    }
+
+    public static instance(moduleInfo: { path: string, moduleName: string }) {
+
+        let instance = new (require(moduleInfo.path)[moduleInfo.moduleName])();
         return instance;
-    };
-    return InstanceSystemService;
-}());
-exports.InstanceSystemService = InstanceSystemService;
-//# sourceMappingURL=instance-system.service.js.map
+    }
+}

@@ -15,7 +15,7 @@
  */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const api_service_1 = require("./src/phantom/service/api/api.service");
-let apiService = new api_service_1.ApiService();
+var api_service_1 = require("./src/phantom/service/api/api.service");
+var apiService = new api_service_1.ApiService();
 apiService.run();
 //# sourceMappingURL=index.js.map

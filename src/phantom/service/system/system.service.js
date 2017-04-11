@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+/*
+ Imports
+ */
 const phantom = phantom;
 const system = require('system');
 const args = system.args;
@@ -21,12 +24,30 @@ const webPage = require('webpage');
 const ArgumentSystemService = require("./argument-system.service").ArgumentSystemService;
 const InstanceSystemService = require('./instance-system.service').InstanceSystemService;
 
+/*
+ Execution preferences
+ */
 var page = webPage.create();
 var argumentSystemService = new ArgumentSystemService(args);
 var executionUserProperties = argumentSystemService.propertyList;
-var pluginInstanceList = InstanceSystemService.instanceListByProperty(executionUserProperties.pluginList);
+var pageUrl = (function () {
+    if (executionUserProperties.url !== undefined) {
+        return executionUserProperties.url;
+    }
+    throw new Error("Start url not is set!");
+})();
+var pluginInstanceList = (function () {
+    if (executionUserProperties.pluginList !== undefined) {
+        return InstanceSystemService.instanceListByProperty(executionUserProperties.pluginList);
+    }
+    return [];
+})();
 
-page.open(executionUserProperties.url, function (status) {
+/*
+ Execution events
+ */
+page.open(pageUrl, function (status) {
 
+    console.log(status);
     phantom.exit();
 });

@@ -15,13 +15,14 @@
  */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const RxJS = require("rxjs");
-class EventService {
-    constructor() {
+var RxJS = require("rxjs");
+var EventService = (function () {
+    function EventService() {
     }
-    createEvent() {
+    EventService.prototype.createEvent = function () {
         return new RxJS.Subject();
-    }
-}
+    };
+    return EventService;
+}());
 exports.EventService = EventService;
 //# sourceMappingURL=event.service.js.map
