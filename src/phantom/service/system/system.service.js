@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-var system = require('system');
-var args = system.args;
+const phantom = phantom;
+const system = require('system');
+const args = system.args;
+const webPage = require('webpage');
+const ArgumentSystemService = require("./argument-system.service").ArgumentSystemService;
+const InstanceSystemService = require('./instance-system.service').InstanceSystemService;
 
-var pluginArgs = JSON.parse(args[1]);
-var plugins = (function(pluginList){
-
-    var pluginInstanceList = [];
-    for(var i = 0; i < pluginList.length; i++){
-        pluginInstanceList.push(require(pluginList[i]));
-    }
-
-    return pluginInstanceList;
-})(pluginArgs);
-
-var webPage = require('webpage');
 var page = webPage.create();
+var argumentSystemService = new ArgumentSystemService(args);
+var executionUserProperties = argumentSystemService.propertyList;
+var pluginInstanceList = InstanceSystemService.instanceListByProperty(executionUserProperties.pluginList);
 
-phantom.exit();
+page.open(executionUserProperties.url, function (status) {
+
+    phantom.exit();
+});

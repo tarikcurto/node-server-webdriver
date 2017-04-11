@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class PluginService {
 }
 exports.PluginService = PluginService;
