@@ -14,10 +14,10 @@ var plugin_service_1 = require("./plugin.service");
 var Plugin1PluginService = (function (_super) {
     __extends(Plugin1PluginService, _super);
     function Plugin1PluginService() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.call(this) || this;
     }
-    Plugin1PluginService.prototype.red = function () {
-        console.log("red!");
+    Plugin1PluginService.prototype.onWebPageResourceRequested = function (requestData, networkRequest) {
+        console.log("\n\n", JSON.stringify(requestData));
     };
     return Plugin1PluginService;
 }(plugin_service_1.PluginService));

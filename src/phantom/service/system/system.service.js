@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
+//phantomjs ./src/phantom/service/system/system.service.js --url="http://www.google.es" --pluginList="[{\"moduleName\":\"Plugin1PluginService\", \"path\":\"C:\\\Users\\\tarikcurto\\\Documents\\\Work\\\github\\\tarikcurto\\\node-webdriver\\\src\\\phantom\\\service\\\plugin\\\plugin1-plugin.service.js\"}]"
+
 /*
  Imports
+----------------------
  */
-const phantom = phantom;
+const phantom;
 const system = require('system');
 const args = system.args;
 const webPage = require('webpage');
@@ -26,8 +29,10 @@ const InstanceSystemService = require('./instance-system.service').InstanceSyste
 
 /*
  Execution preferences
+ ----------------------
  */
 var page = webPage.create();
+var pageEvaluate = page.evaluate;
 var argumentSystemService = new ArgumentSystemService(args);
 var executionUserProperties = argumentSystemService.propertyList;
 var pageUrl = (function () {
@@ -45,6 +50,19 @@ var pluginInstanceList = (function () {
 
 /*
  Execution events
+ ----------------------
+ */
+page.onResourceRequested = function (requestData, networkRequest) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageResourceRequested"] !== "undefined") {
+            pluginInstanceList[i]["onWebPageResourceRequested"](requestData, networkRequest);
+        }
+    }
+};
+
+/*
+ Page executions
+ ----------------------
  */
 page.open(pageUrl, function (status) {
 

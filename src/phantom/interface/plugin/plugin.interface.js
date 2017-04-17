@@ -13,15 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-declare function pageEvaluate(callback:(...data: any[])=>void, ...data: any[]);
-
-export abstract class PluginService{
-
-    protected pageEvaluate: (callback:(...data: any[])=>void, ...data: any[])=>any ;
-
-    constructor() {
-
-        this.pageEvaluate = pageEvaluate;
-    }
-}
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=plugin.interface.js.map

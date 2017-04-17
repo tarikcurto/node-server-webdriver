@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-declare function pageEvaluate(callback:(...data: any[])=>void, ...data: any[]);
+export interface PluginInterface {
 
-export abstract class PluginService{
+    onWebPageAlert?(message: string): void;
 
-    protected pageEvaluate: (callback:(...data: any[])=>void, ...data: any[])=>any ;
+    onWebPageClosing?(closingPage: Object): void;
 
-    constructor() {
+    onWebPageResourceError?(resourceError: Object): void;
 
-        this.pageEvaluate = pageEvaluate;
-    }
+    onWebPageResourceReceived?(response: Object): void;
+
+    onWebPageResourceRequested?(requestData: any, networkRequest: Object): void;
+
+    onWebPageResourceTimeOut?(request: Object): void;
+
+    onWebPageUrlChanged?(targetUrl: string): void;
 }

@@ -17,6 +17,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var PluginService = (function () {
     function PluginService() {
+        this.pageEvaluate = pageEvaluate;
     }
     return PluginService;
 }());
