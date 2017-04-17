@@ -25,4 +25,11 @@ export const APP_DIR = (function (dirname) {
     }
 })(__dirname);
 
-export const SOURCE_DIR = APP_DIR + "/src";
+export const SOURCE_DIR =  (function () {
+
+    if(platform() == "win32"){
+        return APP_DIR + "\\src";
+    }else{
+        return APP_DIR + "/src";
+    }
+})();

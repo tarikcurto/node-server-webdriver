@@ -26,7 +26,7 @@ export interface PluginInterface {
 
     onWebPageResourceRequested?(requestData: any, networkRequest: Object): void;
 
-    onWebPageResourceTimeOut?(request: Object): void;
+    onWebPageResourceTimeout?(request: Object): void;
 
     onWebPageUrlChanged?(targetUrl: string): void;
 }

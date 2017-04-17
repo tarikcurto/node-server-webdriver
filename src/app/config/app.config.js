@@ -24,5 +24,12 @@ exports.APP_DIR = (function (dirname) {
         return dirname.replace("/src/app/config", "");
     }
 })(__dirname);
-exports.SOURCE_DIR = exports.APP_DIR + "/src";
+exports.SOURCE_DIR = (function () {
+    if (os_1.platform() == "win32") {
+        return exports.APP_DIR + "\\src";
+    }
+    else {
+        return exports.APP_DIR + "/src";
+    }
+})();
 //# sourceMappingURL=app.config.js.map

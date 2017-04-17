@@ -15,6 +15,14 @@
  */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var os_1 = require("os");
 var app_config_1 = require("../../app/config/app.config");
-exports.PHANTOM_SCRIPT = app_config_1.SOURCE_DIR + "/phantom/service/system/system.service.js";
+exports.PHANTOM_SCRIPT = (function () {
+    if (os_1.platform() == "win32") {
+        return app_config_1.SOURCE_DIR + "\\phantom\\service\\system\\system.service.js";
+    }
+    else {
+        return app_config_1.SOURCE_DIR + "/phantom/service/system/system.service.js";
+    }
+})();
 //# sourceMappingURL=phantom.config.js.map

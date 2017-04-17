@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
- import {APP_DIR, SOURCE_DIR} from "../../app/config/app.config";
+import {platform} from "os";
+import {SOURCE_DIR} from "../../app/config/app.config";
 
- export const PHANTOM_SCRIPT = SOURCE_DIR + "/phantom/service/system/system.service.js";
+export const PHANTOM_SCRIPT = (function () {
+
+    if (platform() == "win32") {
+        return SOURCE_DIR + "\\phantom\\service\\system\\system.service.js";
+    } else {
+        return SOURCE_DIR + "/phantom/service/system/system.service.js";
+    }
+})();

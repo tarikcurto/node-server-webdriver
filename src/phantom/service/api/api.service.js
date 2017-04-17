@@ -17,13 +17,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tarikcurto_node_terminal_1 = require("tarikcurto.node-terminal");
 var phantom_config_1 = require("../../config/phantom.config");
+var PHANTOM_ENV = "phantomjs";
 var ApiService = (function () {
     function ApiService() {
+        this.pluginList = [];
         this.terminalService = new tarikcurto_node_terminal_1.CommandService();
-        this.terminalService.nameCommandService.nameCommandData = { value: "phantomjs " + phantom_config_1.PHANTOM_SCRIPT };
     }
-    ApiService.prototype.run = function () {
-        console.log(this.terminalService.instanceExecution().executeSync());
+    ApiService.prototype.setUrl = function (url) {
+        this.url = url;
+    };
+    ApiService.prototype.setPluginList = function (pluginList) {
+        this.pluginList = pluginList;
+    };
+    ApiService.prototype.addPlugin = function (moduleName, path) {
+        this.pluginList.push({ moduleName: moduleName, path: path });
+    };
+    ApiService.prototype.build = function () {
+        this.buildCommand();
+        return this.terminalService.instanceExecution().executeSync();
+    };
+    ApiService.prototype.buildCommand = function () {
+        this.terminalService.nameCommandService.nameCommandData = { value: PHANTOM_ENV + " " + JSON.stringify(phantom_config_1.PHANTOM_SCRIPT) };
+        this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--url', value: this.url });
+        this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--pluginList', value: JSON.stringify(this.pluginList) });
     };
     return ApiService;
 }());

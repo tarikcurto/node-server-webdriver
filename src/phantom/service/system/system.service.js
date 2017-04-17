@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-//phantomjs ./src/phantom/service/system/system.service.js --url="http://www.google.es" --pluginList="[{\"moduleName\":\"Plugin1PluginService\", \"path\":\"C:\\\Users\\\tarikcurto\\\Documents\\\Work\\\github\\\tarikcurto\\\node-webdriver\\\src\\\phantom\\\service\\\plugin\\\plugin1-plugin.service.js\"}]"
-
 /*
  Imports
-----------------------
  */
 const phantom;
 const system = require('system');
@@ -29,7 +26,6 @@ const InstanceSystemService = require('./instance-system.service').InstanceSyste
 
 /*
  Execution preferences
- ----------------------
  */
 var page = webPage.create();
 var pageEvaluate = page.evaluate;
@@ -50,19 +46,59 @@ var pluginInstanceList = (function () {
 
 /*
  Execution events
- ----------------------
  */
+
+page.onAlert = function (message) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageAlert"] !== "undefined")
+            pluginInstanceList[i]["onWebPageAlert"](message);
+    }
+};
+
+page.onClosing = function (closingPage) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageClosing"] !== "undefined")
+            pluginInstanceList[i]["onWebPageClosing"](closingPage);
+    }
+};
+
+page.onResourceError = function (resourceError) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageResourceError"] !== "undefined")
+            pluginInstanceList[i]["onWebPageResourceError"](resourceError);
+    }
+};
+
+page.onResourceReceived = function (response) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageResourceReceived"] !== "undefined")
+            pluginInstanceList[i]["onWebPageResourceReceived"](response);
+    }
+};
+
 page.onResourceRequested = function (requestData, networkRequest) {
     for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageResourceRequested"] !== "undefined") {
+        if (typeof pluginInstanceList[i]["onWebPageResourceRequested"] !== "undefined")
             pluginInstanceList[i]["onWebPageResourceRequested"](requestData, networkRequest);
-        }
+    }
+};
+
+page.onResourceTimeout = function (request) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageResourceTimeout"] !== "undefined")
+            pluginInstanceList[i]["onWebPageResourceTimeout"](request);
+    }
+};
+
+page.onUrlChanged = function (targetUrl) {
+    for (var i = 0; i < pluginInstanceList.length; i++) {
+        if (typeof pluginInstanceList[i]["onWebPageUrlChanged"] !== "undefined")
+            pluginInstanceList[i]["onWebPageUrlChanged"](targetUrl);
     }
 };
 
 /*
  Page executions
- ----------------------
  */
 page.open(pageUrl, function (status) {
 
