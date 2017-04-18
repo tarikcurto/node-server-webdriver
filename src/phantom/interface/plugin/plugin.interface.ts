@@ -29,4 +29,6 @@ export interface PluginInterface {
     onWebPageResourceTimeout?(request: Object): void;
 
     onWebPageUrlChanged?(targetUrl: string): void;
+
+    onWebPageOpen?(status: string): void;
 }

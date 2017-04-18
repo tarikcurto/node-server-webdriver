@@ -18,17 +18,17 @@
  Imports
  */
 const phantom;
-const system = require('system');
+const system = require("system");
 const args = system.args;
-const webPage = require('webpage');
+const webPage = require("webpage");
 const ArgumentSystemService = require("./argument-system.service").ArgumentSystemService;
-const InstanceSystemService = require('./instance-system.service').InstanceSystemService;
+const InstanceSystemService = require("./instance-system.service").InstanceSystemService;
+const EventSystemService = require("./event-system.service").EventSystemService;
 
 /*
  Execution preferences
  */
 var page = webPage.create();
-var pageEvaluate = page.evaluate;
 var argumentSystemService = new ArgumentSystemService(args);
 var executionUserProperties = argumentSystemService.propertyList;
 var pageUrl = (function () {
@@ -45,63 +45,6 @@ var pluginInstanceList = (function () {
 })();
 
 /*
- Execution events
+ Page execution events
  */
-
-page.onAlert = function (message) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageAlert"] !== "undefined")
-            pluginInstanceList[i]["onWebPageAlert"](message);
-    }
-};
-
-page.onClosing = function (closingPage) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageClosing"] !== "undefined")
-            pluginInstanceList[i]["onWebPageClosing"](closingPage);
-    }
-};
-
-page.onResourceError = function (resourceError) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageResourceError"] !== "undefined")
-            pluginInstanceList[i]["onWebPageResourceError"](resourceError);
-    }
-};
-
-page.onResourceReceived = function (response) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageResourceReceived"] !== "undefined")
-            pluginInstanceList[i]["onWebPageResourceReceived"](response);
-    }
-};
-
-page.onResourceRequested = function (requestData, networkRequest) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageResourceRequested"] !== "undefined")
-            pluginInstanceList[i]["onWebPageResourceRequested"](requestData, networkRequest);
-    }
-};
-
-page.onResourceTimeout = function (request) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageResourceTimeout"] !== "undefined")
-            pluginInstanceList[i]["onWebPageResourceTimeout"](request);
-    }
-};
-
-page.onUrlChanged = function (targetUrl) {
-    for (var i = 0; i < pluginInstanceList.length; i++) {
-        if (typeof pluginInstanceList[i]["onWebPageUrlChanged"] !== "undefined")
-            pluginInstanceList[i]["onWebPageUrlChanged"](targetUrl);
-    }
-};
-
-/*
- Page executions
- */
-page.open(pageUrl, function (status) {
-
-    console.log(status);
-    phantom.exit();
-});
+EventSystemService(phantom, page, pluginInstanceList);

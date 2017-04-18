@@ -17,8 +17,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var PluginService = (function () {
     function PluginService() {
-        this.pageEvaluate = pageEvaluate;
     }
+    /**
+     * Evaluate JS on instanced page.
+     *
+     * @param callback
+     * @param {Object} data Client properties of evaluation
+     */
+    PluginService.prototype.evaluate = function (callback, data) {
+        if (data === void 0) { data = {}; }
+        //PhantomJS don't has support for Function.property.bind(), Function.property.apply()
+        //Explanation: https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ
+        return page.evaluate(callback, data);
+    };
     return PluginService;
 }());
 exports.PluginService = PluginService;

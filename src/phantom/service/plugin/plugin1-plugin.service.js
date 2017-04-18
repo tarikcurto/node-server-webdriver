@@ -16,8 +16,7 @@ var Plugin1PluginService = (function (_super) {
     function Plugin1PluginService() {
         return _super.call(this) || this;
     }
-    Plugin1PluginService.prototype.onWebPageResourceRequested = function (requestData, networkRequest) {
-        console.log("\n\n", JSON.stringify(requestData));
+    Plugin1PluginService.prototype.onWebPageOpen = function (status) {
     };
     return Plugin1PluginService;
 }(plugin_service_1.PluginService));

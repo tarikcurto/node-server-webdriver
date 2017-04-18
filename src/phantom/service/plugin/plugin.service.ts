@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-declare function pageEvaluate(callback:(...data: any[])=>void, ...data: any[]);
+declare const page: {evaluate:Function};
 
 export abstract class PluginService{
 
-    protected pageEvaluate: (callback:(...data: any[])=>void, ...data: any[])=>any ;
-
     constructor() {
 
-        this.pageEvaluate = pageEvaluate;
+    }
+
+    /**
+     * Evaluate JS on instanced page.
+     *
+     * @param callback
+     * @param {Object} data Client properties of evaluation
+     */
+    public evaluate(callback: Function, data: Object = {}){
+
+        //PhantomJS don't has support for Function.property.bind(), Function.property.apply()
+        //Explanation: https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ
+        return page.evaluate(callback, data);
     }
 }

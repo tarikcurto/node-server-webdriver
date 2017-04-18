@@ -20,4 +20,6 @@ let apiService: ApiService = new ApiService();
 
 apiService.setUrl("http://www.google.es");
 apiService.addPlugin('Plugin1PluginService', "C:\\Users\\tarikcurto\\Documents\\Work\\github\\tarikcurto\\node-webdriver\\src\\phantom\\service\\plugin\\plugin1-plugin.service.js");
-apiService.build();
+let output = apiService.build();
+
+console.log(output);
