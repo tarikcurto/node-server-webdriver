@@ -21,6 +21,7 @@ const phantom;
 const system = require("system");
 const args = system.args;
 const webPage = require("webpage");
+const fs = require('fs');
 const ArgumentSystemService = require("./argument-system.service").ArgumentSystemService;
 const InstanceSystemService = require("./instance-system.service").InstanceSystemService;
 const EventSystemService = require("./event-system.service").EventSystemService;
@@ -43,8 +44,14 @@ var pluginInstanceList = (function () {
     }
     return [];
 })();
+var workPath = (function(){
+    if(executionUserProperties.workPath !== undefined){
+        fs.changeWorkingDirectory(executionUserProperties.workPath);
+    }
+    return fs.workingDirectory;
+}());
 
 /*
  Page execution events
  */
-EventSystemService(phantom, page, pluginInstanceList);
+EventSystemService(phantom, page, pageUrl, pluginInstanceList);

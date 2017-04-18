@@ -29,6 +29,9 @@ var ApiService = (function () {
     ApiService.prototype.setPluginList = function (pluginList) {
         this.pluginList = pluginList;
     };
+    ApiService.prototype.setWorkPath = function (workPath) {
+        this.workPath = workPath;
+    };
     ApiService.prototype.addPlugin = function (moduleName, path) {
         this.pluginList.push({ moduleName: moduleName, path: path });
     };
@@ -40,6 +43,9 @@ var ApiService = (function () {
         this.terminalService.nameCommandService.nameCommandData = { value: PHANTOM_ENV + " " + JSON.stringify(phantom_config_1.PHANTOM_SCRIPT) };
         this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--url', value: this.url });
         this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--pluginList', value: JSON.stringify(this.pluginList) });
+        if (this.workPath !== null) {
+            this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--workPath', value: this.workPath });
+        }
     };
     return ApiService;
 }());
