@@ -17,6 +17,7 @@ var Plugin1PluginService = (function (_super) {
         return _super.call(this) || this;
     }
     Plugin1PluginService.prototype.onWebPageOpen = function (status) {
+        this.screenshot("test1");
     };
     return Plugin1PluginService;
 }(plugin_service_1.PluginService));

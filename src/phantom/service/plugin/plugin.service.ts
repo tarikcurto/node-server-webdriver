@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-declare const page: {evaluate:Function};
+declare const page: {evaluate:Function, render: Function};
 
 export abstract class PluginService{
 
@@ -33,5 +33,10 @@ export abstract class PluginService{
         //PhantomJS don't has support for Function.property.bind(), Function.property.apply()
         //Explanation: https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ
         return page.evaluate(callback, data);
+    }
+
+    public screenshot(captureName: string){
+
+        page.render(captureName + ".png");
     }
 }

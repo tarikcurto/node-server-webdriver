@@ -9,5 +9,6 @@ export class Plugin1PluginService extends PluginService implements PluginInterfa
 
     onWebPageOpen(status: string){
 
+        this.screenshot("test1");
     }
 }

@@ -30,6 +30,9 @@ var PluginService = (function () {
         //Explanation: https://groups.google.com/forum/#!msg/phantomjs/r0hPOmnCUpc/uxusqsl2LNoJ
         return page.evaluate(callback, data);
     };
+    PluginService.prototype.screenshot = function (captureName) {
+        page.render(captureName + ".png");
+    };
     return PluginService;
 }());
 exports.PluginService = PluginService;
