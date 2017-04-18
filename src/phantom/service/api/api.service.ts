@@ -27,6 +27,8 @@ export class ApiService {
 
     private pluginList:Array<{moduleName:string, path:string}>;
 
+    private workPath: string;
+
     public constructor() {
 
         this.pluginList = [];
@@ -41,6 +43,11 @@ export class ApiService {
     public setPluginList(pluginList: Array<{moduleName:string, path:string}>){
 
         this.pluginList = pluginList;
+    }
+
+    public setWorkPath(workPath: string){
+
+        this.workPath = workPath;
     }
 
     public addPlugin(moduleName: string, path: string){
@@ -59,5 +66,9 @@ export class ApiService {
         this.terminalService.nameCommandService.nameCommandData = {value: PHANTOM_ENV + " " + JSON.stringify(PHANTOM_SCRIPT)};
         this.terminalService.argumentCommandService.argumentCommandData.push({key: '--url', value: this.url});
         this.terminalService.argumentCommandService.argumentCommandData.push({key: '--pluginList', value: JSON.stringify(this.pluginList)});
+
+        if(this.workPath !== null){
+            this.terminalService.argumentCommandService.argumentCommandData.push({key: '--workPath', value: this.workPath});
+        }
     }
 }

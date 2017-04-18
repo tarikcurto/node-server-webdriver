@@ -17,7 +17,7 @@
 
 var EventSystemService = (function () {
 
-    function EventSystemService(phantom, page, pluginInstanceList) {
+    function EventSystemService(phantom, page, pageUrl, pluginInstanceList) {
 
         page.onAlert = function (message) {
             for (var i = 0; i < pluginInstanceList.length; i++) {

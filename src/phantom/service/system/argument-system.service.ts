@@ -20,7 +20,7 @@
 
      public scriptFile: string;
 
-     public propertyList: {url?, pluginList?};
+     public propertyList: {url?, pluginList?, workPath?};
 
      public constructor(argumentList: Array<string>){
 

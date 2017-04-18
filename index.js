@@ -19,6 +19,7 @@ var api_service_1 = require("./src/phantom/service/api/api.service");
 var apiService = new api_service_1.ApiService();
 apiService.setUrl("http://www.google.es");
 apiService.addPlugin('Plugin1PluginService', "C:\\Users\\tarikcurto\\Documents\\Work\\github\\tarikcurto\\node-webdriver\\src\\phantom\\service\\plugin\\plugin1-plugin.service.js");
+apiService.setWorkPath("C:\\tmp");
 var output = apiService.build();
 console.log(output);
 //# sourceMappingURL=index.js.map
