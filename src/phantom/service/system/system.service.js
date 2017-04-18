@@ -24,7 +24,7 @@ const webPage = require("webpage");
 const fs = require('fs');
 const ArgumentSystemService = require("./argument-system.service").ArgumentSystemService;
 const InstanceSystemService = require("./instance-system.service").InstanceSystemService;
-const EventSystemService = require("./event-system.service").EventSystemService;
+const PageSystemEvent = require("./../../event/system/page-system.event.js").PageSystemEvent;
 
 /*
  Execution preferences
@@ -54,4 +54,4 @@ var workPath = (function(){
 /*
  Page execution events
  */
-EventSystemService(phantom, page, pageUrl, pluginInstanceList);
+PageSystemEvent(phantom, page, pageUrl, pluginInstanceList);

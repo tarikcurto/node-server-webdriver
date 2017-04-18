@@ -15,9 +15,9 @@
  */
 
 
-var EventSystemService = (function () {
+var PageSystemEvent = (function () {
 
-    function EventSystemService(phantom, page, pageUrl, pluginInstanceList) {
+    function PageSystemEvent(phantom, page, pageUrl, pluginInstanceList) {
 
         page.onAlert = function (message) {
             for (var i = 0; i < pluginInstanceList.length; i++) {
@@ -69,7 +69,6 @@ var EventSystemService = (function () {
         };
 
         page.open(pageUrl, function (status) {
-
             for (var i = 0; i < pluginInstanceList.length; i++) {
                 if (typeof pluginInstanceList[i]["onWebPageOpen"] !== "undefined")
                     pluginInstanceList[i]["onWebPageOpen"](status);
@@ -78,8 +77,8 @@ var EventSystemService = (function () {
         });
     }
 
-    return EventSystemService;
+    return PageSystemEvent;
 
 }());
 
-module.exports.EventSystemService = EventSystemService;
+module.exports.PageSystemEvent = PageSystemEvent;
