@@ -11,8 +11,7 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "build": "tsc",
-    "rebuild-run": "npm run build && npm run start"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

@@ -14,16 +14,8 @@
  * limitations under the License.
  */
 
-import {ApiService} from "./src/phantom/service/api/api.service";
+import { ApiService } from "./src/phantom/service/api/api.service";
+import { PluginService } from "./src/phantom/service/plugin/plugin.service";
+import { PluginInterface } from "./src/phantom/interface/plugin/plugin.interface";
 
-let apiService: ApiService = new ApiService();
-
-apiService.setUrl("http://www.google.es");
-
-apiService.addPlugin('Plugin1PluginService', "C:\\Users\\tarikcurto\\Documents\\Work\\github\\tarikcurto\\node-webdriver\\src\\phantom\\service\\plugin\\plugin1-plugin.service.js");
-
-apiService.setWorkPath("C:\\tmp")
-
-let output = apiService.build();
-
-console.log(output);
+export { ApiService, PluginService, PluginInterface };

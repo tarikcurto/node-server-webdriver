@@ -43,7 +43,7 @@ var ApiService = (function () {
         this.terminalService.nameCommandService.nameCommandData = { value: PHANTOM_ENV + " " + JSON.stringify(phantom_config_1.PHANTOM_SCRIPT) };
         this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--url', value: this.url });
         this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--pluginList', value: JSON.stringify(this.pluginList) });
-        if (this.workPath !== null) {
+        if (this.workPath !== undefined) {
             this.terminalService.argumentCommandService.argumentCommandData.push({ key: '--workPath', value: this.workPath });
         }
     };

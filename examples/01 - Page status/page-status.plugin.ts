@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-import * as RxJS from "rxjs";
+import { PluginService, PluginInterface} from "tarikcurto.node-webdriver";
 
-export class EventService {
+export class PageStatusPlugin extends PluginService implements PluginInterface {
 
-    constructor() {
-
+    public constructor() {
+        super();
     }
 
-    public createEvent(): RxJS.Subject<any>{
-
-        return new RxJS.Subject();
+    onWebPageOpen(status: string){
+        console.log("Page status is " + status);
     }
 }

@@ -16,10 +16,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var api_service_1 = require("./src/phantom/service/api/api.service");
-var apiService = new api_service_1.ApiService();
-apiService.setUrl("http://www.google.es");
-apiService.addPlugin('Plugin1PluginService', "C:\\Users\\tarikcurto\\Documents\\Work\\github\\tarikcurto\\node-webdriver\\src\\phantom\\service\\plugin\\plugin1-plugin.service.js");
-apiService.setWorkPath("C:\\tmp");
-var output = apiService.build();
-console.log(output);
+exports.ApiService = api_service_1.ApiService;
+var plugin_service_1 = require("./src/phantom/service/plugin/plugin.service");
+exports.PluginService = plugin_service_1.PluginService;
 //# sourceMappingURL=index.js.map

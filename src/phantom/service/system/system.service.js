@@ -29,9 +29,14 @@ const PageSystemEvent = require("./../../event/system/page-system.event.js").Pag
 /*
  Execution preferences
  */
-var page = webPage.create();
 var argumentSystemService = new ArgumentSystemService(args);
 var executionUserProperties = argumentSystemService.propertyList;
+phantom.onError = function(err, trace) {
+    //Disable NodeJS constants error.
+    if(!(err == "Error: Cannot find module 'os'" || err == "SyntaxError: Unexpected token 'const'"))
+        console.log("\n"+"PHANTOM ERROR: "+err+"\n"+"ERROR TRACE: " + JSON.stringify(trace));
+};
+var page = webPage.create();
 var pageUrl = (function () {
     if (executionUserProperties.url !== undefined) {
         return executionUserProperties.url;

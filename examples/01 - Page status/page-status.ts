@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var RxJS = require("rxjs");
-var EventService = (function () {
-    function EventService() {
-    }
-    EventService.prototype.createEvent = function () {
-        return new RxJS.Subject();
-    };
-    return EventService;
-}());
-exports.EventService = EventService;
-//# sourceMappingURL=event.service.js.map
+
+import { ApiService } from "tarikcurto.node-webdriver";
+
+let apiService = new ApiService();
+apiService.setUrl("http://www.google.es");
+apiService.addPlugin("TestPlugin", __dirname + "\\page-status.plugin.js");
+let pageStaus = apiService.build();
+
+console.log(pageStaus);
